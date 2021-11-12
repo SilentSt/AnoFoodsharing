@@ -1,0 +1,236 @@
+import 'package:cifra/data/data.dart';
+import 'package:cifra/functions/functions.dart';
+import 'package:cifra/functions/login_button_pressed.dart';
+import 'package:cifra/pages/pages.dart';
+import 'package:cifra/widgets/widgets.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+class RegistrationPage extends StatefulWidget {
+  const RegistrationPage({Key? key}) : super(key: key);
+
+  @override
+  State<RegistrationPage> createState() => _RegistrationPageState();
+}
+
+class _RegistrationPageState extends State<RegistrationPage> {
+  @override
+  Widget build(BuildContext context) {
+    var pageSize = MediaQuery.of(context).size;
+    var keys = [
+      "Имя",
+      "Фамилия",
+      "Город",
+      "Адрес проживания",
+      "Номер телефона",
+      "e-mail",
+      "Придумайте пароль",
+      "Повторите пароль"
+    ];
+    var texts = [
+      "fName",
+      "sName",
+      "city",
+      "address",
+      "phoneNum",
+      "email",
+      "password",
+      "sPassword"
+    ];
+    final Map<String, String> inpFields = Map.fromIterables(texts, keys);
+    bool isChecked = false;
+    bool successRegistration = true;
+    return Scaffold(
+        appBar: AppBar(
+            shadowColor: Colors.transparent,
+            centerTitle: true,
+            backgroundColor: Colors.white,
+            leading: const Logo(),
+            actions: const [
+              Padding(
+                padding: EdgeInsets.only(top: 20),
+                child: Text(
+                  "Уже зарегистрированы? ",
+                  style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      color: Colors.black,
+                      fontSize: 15,
+                      fontFamily: "GothemPro"),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 13),
+                child: FlexLink(
+                  onTap: loginButtonPressed,
+                  fontColor: Colors.black,
+                  text: 'Войти',
+                  fontSize: 15,
+                ),
+              )
+            ]),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(
+              pageSize.width > 800
+                  ? pageSize.width * 0.3
+                  : pageSize.width * 0.1,
+              40,
+              pageSize.width > 800
+                  ? pageSize.width * 0.3
+                  : pageSize.width * 0.1,
+              40,
+            ),
+            child: Column(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(40),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Color(0x0F000000),
+                          blurRadius: 10.0,
+                          spreadRadius: 7.0,
+                          offset: Offset(
+                            0,
+                            10.0,
+                          ),
+                        ),
+                      ]),
+                  child: Column(
+                    children: [
+                      const Text(
+                        "Регистрация!",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black,
+                            fontFamily: "GothamPro"),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: inpFields.keys
+                            .map((key) => registrationInputField(
+                                inpFields[key].toString(), Key(key), context))
+                            .toList(),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      checkUsingUserData()
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 70,
+                ),
+                const Button(
+                    text: "Зарегистрироваться",
+                    width: 275,
+                    hoveredBorderColor: Color(0xff08A88A),
+                    onTap: shDialog,
+                    backgroundColor: Colors.black,
+                    fontColor: Colors.white,
+                    borderColor: Colors.black,
+                    fontSize: 20)
+              ],
+            ),
+          ),
+        ));
+  }
+
+  Row checkUsingUserData() {
+    bool isChecked = false;
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Checkbox(
+          value: isChecked,
+          onChanged: (val) => {
+            setState(() {
+              isChecked = val!;
+            })
+          },
+          fillColor: MaterialStateProperty.all(const Color(0xffFFE17D)),
+          checkColor: Colors.black,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+        ),
+        Expanded(
+          child: RichText(
+            text: TextSpan(children: [
+              const WidgetSpan(
+                  child: Text(
+                "Я принимаю ",
+                style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black,
+                    fontFamily: "GothamPro"),
+              )),
+              WidgetSpan(
+                  child: GestureDetector(
+                onTap: () => {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          backgroundColor: Colors.white,
+                          actionsAlignment: MainAxisAlignment.center,
+                          actions: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: const [
+                                Text("Пользовательское соглашение"),
+                                Text("Тут будет текст")
+                              ],
+                            )
+                          ],
+                        );
+                      })
+                },
+                child: const Text(
+                  "соглашение",
+                  style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w400,
+                      color: Color(0xffFFE17D),
+                      fontFamily: "GothamPro",
+                      decoration: TextDecoration.underline,
+                      decorationThickness: 5),
+                ),
+              )),
+              const WidgetSpan(
+                  child: Text(
+                "об условиях обработки персональных данных",
+                style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black,
+                    fontFamily: "GothamPro"),
+              )),
+            ]),
+          ),
+        )
+      ],
+    );
+  }
+}
+
+void shDialog(BuildContext context)
+{
+  PageState.logged=true;
+  showDialog(
+      context: context,
+      builder: (context) {
+        return const SuccessRegistrationDialog();
+      });
+}
+
+

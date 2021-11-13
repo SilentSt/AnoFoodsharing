@@ -24,7 +24,7 @@ class UserDataElement extends StatelessWidget {
           SizedBox(child: Text(text, textAlign: TextAlign.end,), width: 130,),
           const SizedBox(width: 30,),
           SizedBox(
-            child: InputField(keyName: Key(textKey).toString(), controller: userDataController,),
+            child: InputField(keyName: Key(textKey).toString(), controller: userDataController),
             width: pageSize.width > 820 ? 280 : pageSize.width - 390,
           )
         ],

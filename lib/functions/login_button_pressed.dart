@@ -100,7 +100,14 @@ login(BuildContext context) async {
       var val = await jsonDecode(res);
       await FlutterSession().set("jwt", val['access_token']);
       PageState.logged = true;
-      goHomePage(context);
+      if(emailController.text=="admin@admin.ru"&&passwordController.text=="string")
+        {
+        goAdminPage(context);
+        }
+      else{
+        goHomePage(context);
+      }
+
       //print(await FlutterSession().get('jwt'));
     }
   else{

@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
             ? const RowAppTitle(
                 titles: ['Контакты', 'Описание', 'Статистика', 'Органицазиям'],
               )
-            : const ColumnAppTitle(),
+            : const ColumnAppTitle(titles: ['Контакты', 'Описание', 'Статистика', 'Органицазиям'],),
         actions: [
           !PageState.logged
               ? pageSize.width > 500

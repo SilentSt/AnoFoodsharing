@@ -4,3 +4,4 @@ export 'go_rules_page.dart';
 export 'logout.dart';
 export 'login_button_pressed.dart';
 export 'registration_button_pressed.dart';
+export 'go_admin_page.dart';

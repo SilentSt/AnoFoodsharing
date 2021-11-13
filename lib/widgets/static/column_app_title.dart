@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:cifra/pages/pages.dart';
 
 class ColumnAppTitle extends StatelessWidget {
+  final List<String> titles;
   const ColumnAppTitle({
-    Key? key,
+    Key? key, required this.titles,
   }) : super(key: key);
 
   @override
@@ -23,32 +24,16 @@ class ColumnAppTitle extends StatelessWidget {
                       actions: [
                         Center(
                           child: Column(
-                            children: [
-                              Link(
-                                text: "Контакты",
-                                onTap: (context) => {},
-                                fontSize: 15,
-                                fontColor: Colors.black,
-                              ),
-                              Link(
-                                text: "Описание",
-                                onTap: (context) => {},
-                                fontSize: 15,
-                                fontColor: Colors.black,
-                              ),
-                              Link(
-                                text: "Статистика",
-                                onTap: (context) => {},
-                                fontSize: 15,
-                                fontColor: Colors.black,
-                              ),
-                              Link(
-                                text: "Организациям",
-                                onTap: (context) => {},
-                                fontSize: 15,
-                                fontColor: Colors.black,
-                              ),
-                            ],
+                            children: titles
+                        .map(
+                        (e) => FlexLink(
+                      text: e,
+                      onTap: (context) => {},
+                      fontSize: 15,
+                      fontColor: Colors.black,
+                    ),
+                    )
+                        .toList(),
                             mainAxisAlignment: MainAxisAlignment.center,
                           ),
                         )

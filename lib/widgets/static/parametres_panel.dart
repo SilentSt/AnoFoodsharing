@@ -1,72 +1,49 @@
+import 'package:cifra/functions/go_account_page.dart';
 import 'package:cifra/widgets/flex/link.dart';
 import 'package:flutter/material.dart';
 
 class ParametersPanel extends StatelessWidget {
+  final int type;
   const ParametersPanel({
-    Key? key,
+    Key? key, required this.type,
   }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+    final volonter0 = <String, Function>{
+      "Данные пользователя": goAccountPage,
+      "Организации":goAccountPage,
+      "Подопечные":goAccountPage,
+      "Настройки аккаунта":goAccountPage,
+    };
+    final volonter1 = <String, dynamic>{
+      "Данные пользователя": goAccountPage,
+      "Организации":goAccountPage,
+      "Подопечные":goAccountPage,
+      "Настройки аккаунта":goAccountPage,
+    };
+    final volonter2 = <String, dynamic>{
+    "Данные пользователя": goAccountPage,
+    "Организации":goAccountPage,
+    "Подопечные":goAccountPage,
+    "Настройки аккаунта":goAccountPage,
+    };
+    final kurator = <String, dynamic>{
+      "Данные пользователя": goAccountPage,
+      "Волонтёры":goAccountPage,
+      "Организации":goAccountPage,
+      "Подопечные":goAccountPage,
+      "Настройки аккаунта":goAccountPage,
+    };
+    var typizator=[volonter0,volonter1, volonter2, kurator];
     return Column(
-      children: [
-        Link(
-            text: 'Данные пользователя',
-            onTap: () => {},
-            fontColor: Colors.black,
-            fontSize: 15,
-            borderColor: const Color(0xffFFE17D),
-            width: 250),
-        Link(
-            text: 'Волонтерская деятельность',
-            onTap: () => {},
-            fontColor: Colors.black,
-            fontSize: 15,
-            borderColor: const Color(0xffFFE17D),
-            width: 250),
-        Link(
-            text: 'Расписание',
-            onTap: () => {},
-            fontColor: Colors.black,
-            fontSize: 15,
-            borderColor: const Color(0xffFFE17D),
-            width: 250),
-        Link(
-            text: 'Организации',
-            onTap: () => {},
-            fontColor: Colors.black,
-            fontSize: 15,
-            borderColor: const Color(0xffFFE17D),
-            width: 250),
-        Link(
-            text: 'Подопечные',
-            onTap: () => {},
-            fontColor: Colors.black,
-            fontSize: 15,
-            borderColor: const Color(0xffFFE17D),
-            width: 250),
-        Link(
-            text: 'Арихив актов',
-            onTap: () => {},
-            fontColor: Colors.black,
-            fontSize: 15,
-            borderColor: const Color(0xffFFE17D),
-            width: 250),
-        Link(
-            text: 'Правила',
-            onTap: () => {},
-            fontColor: Colors.black,
-            fontSize: 15,
-            borderColor: const Color(0xffFFE17D),
-            width: 250),
-        Link(
-            text: 'Настройки аккаунта',
-            onTap: () => {},
-            fontColor: Colors.black,
-            fontSize: 15,
-            borderColor: const Color(0xffFFE17D),
-            width: 250)
-      ],
+      children:typizator[type].keys.map((e) => Link(
+        text: e,
+        fontColor: Colors.black,
+        fontSize: 15,
+        borderColor: const Color(0xffffe17d),
+        width: 250,
+        onTap: (typizator[type])[e],
+      )).toList()
     );
   }
 }

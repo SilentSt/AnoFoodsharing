@@ -25,7 +25,9 @@ class _RulesPageState extends State<RulesPage> {
               ? const RowAppTitle(
                   titles: ['Расписание', 'Уведомления'],
                 )
-              : const ColumnAppTitle(),
+              : const ColumnAppTitle(
+            titles: ['Расписание', 'Уведомления'],
+          ),
           actions: [
             IconButton(
                 onPressed: () => {

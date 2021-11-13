@@ -16,7 +16,6 @@ class InputField extends StatelessWidget {
       style: const TextStyle(color: Colors.black, fontSize: 18),
       textAlign: TextAlign.center,
       controller: controller,
-      //initialValue: SecureStorage.loadData(keyName).toString(),
       decoration: InputDecoration(
         alignLabelWithHint: true,
         filled: true,

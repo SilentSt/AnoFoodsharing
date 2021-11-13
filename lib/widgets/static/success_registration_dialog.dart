@@ -44,7 +44,7 @@ class _SuccessRegistrationDialogState extends State<SuccessRegistrationDialog> {
               Button(
                   text: "Ура :)",
                   width: 100,
-                  onTap: goHomePage,
+                  onTap: loginButtonPressed,
                   backgroundColor: Colors.white,
                   fontColor: Colors.black,
                   borderColor: Colors.black,

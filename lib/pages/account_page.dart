@@ -26,7 +26,7 @@ class _AccountPageState extends State<AccountPage> {
           backgroundColor: Colors.white,
           leading: const Logo(),
           title: const RowAppTitle(
-            titles: ['Расписание', 'Уведомления'],
+            titles: ['Уведомления'],
           ),
           actions: [
             IconButton(

@@ -1,7 +1,12 @@
+import 'dart:convert';
+
+import 'package:cifra/connectors/send_data.dart';
 import 'package:cifra/data/data.dart';
 import 'package:cifra/functions/functions.dart';
 import 'package:cifra/functions/login_button_pressed.dart';
+import 'package:cifra/headers/registation_headers.dart';
 import 'package:cifra/pages/pages.dart';
+import 'package:cifra/widgets/controllers/controllers.dart';
 import 'package:cifra/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +42,19 @@ class _RegistrationPageState extends State<RegistrationPage> {
       "password",
       "sPassword"
     ];
+    var controllers = [
+      fNameReg,
+      sNameReg,
+      cityReg,
+      addressReg,
+      phoneNumReg,
+      emailReg,
+      passwordReg,
+      passwordReg
+    ];
     final Map<String, String> inpFields = Map.fromIterables(texts, keys);
+    final Map<String, TextEditingController> cts =
+        Map.fromIterables(texts, controllers);
     bool isChecked = false;
     bool successRegistration = true;
     return Scaffold(
@@ -113,7 +130,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: inpFields.keys
                             .map((key) => registrationInputField(
-                                inpFields[key].toString(), Key(key), context))
+                                inpFields[key].toString(),
+                                Key(key),
+                                cts[key]!,
+                                context))
                             .toList(),
                       ),
                       const SizedBox(
@@ -126,11 +146,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 const SizedBox(
                   height: 70,
                 ),
-                const Button(
+                Button(
                     text: "Зарегистрироваться",
                     width: 275,
                     hoveredBorderColor: Color(0xff08A88A),
-                    onTap: shDialog,
+                    onTap: registrate,
                     backgroundColor: Colors.black,
                     fontColor: Colors.white,
                     borderColor: Colors.black,
@@ -139,6 +159,22 @@ class _RegistrationPageState extends State<RegistrationPage> {
             ),
           ),
         ));
+  }
+
+  registrate(BuildContext context) async {
+    var data = <String,dynamic>{};
+    data['first_name'] = fNameReg.text;
+    data['last_name'] = sNameReg.text;
+    data['email'] = emailReg.text;
+    data['city'] = cityReg.text;
+    data['address'] = addressReg.text;
+    data['phone'] = phoneNumReg.text;
+    data['password'] = passwordReg.text;
+    var res = await sendData(registrationHeaders, 'users', jsonEncode(data));
+
+    if (res != "NO_RESULT_SEND") {
+      shDialog(context);
+    }
   }
 
   Row checkUsingUserData() {
@@ -223,14 +259,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
   }
 }
 
-void shDialog(BuildContext context)
-{
-  PageState.logged=true;
+void shDialog(BuildContext context) {
+  PageState.logged = true;
   showDialog(
       context: context,
       builder: (context) {
         return const SuccessRegistrationDialog();
       });
 }
-
-

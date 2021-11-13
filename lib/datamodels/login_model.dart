@@ -1,15 +1,14 @@
 class LoginModel {
   final String login;
   final String password;
+  String jwtToken;
 
-  LoginModel(
-    this.login,
-    this.password,
-  );
+  LoginModel(this.login, this.password, {this.jwtToken=""});
 
   LoginModel.fromJson(Map<String, dynamic> json)
-      : login = json['name'],
-        password = json['email'];
+      :jwtToken = json['jwt'],
+        login = "",
+        password = "";
 
   Map<String, dynamic> toJson() => {
         'name': login,

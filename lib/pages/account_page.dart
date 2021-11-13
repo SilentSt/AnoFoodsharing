@@ -1,3 +1,9 @@
+import 'dart:convert';
+
+import 'package:cifra/connectors/get_data.dart';
+import 'package:cifra/headers/account_data_headers.dart';
+import 'package:cifra/headers/login_headers.dart';
+import 'package:cifra/widgets/controllers/controllers.dart';
 import 'package:cifra/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +18,7 @@ class _AccountPageState extends State<AccountPage> {
   @override
   Widget build(BuildContext context) {
     var pageSize = MediaQuery.of(context).size;
+    print(getData(accountDataHeaders, '/me'));
     return Scaffold(
       appBar: AppBar(
           shadowColor: Colors.transparent,
@@ -81,12 +88,12 @@ class _AccountPageState extends State<AccountPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          UserDataElement(pageSize: pageSize, textKey: 'userFirstName', text: 'Имя',),
-                          UserDataElement(pageSize: pageSize, textKey: 'userSecondName', text: 'Фамилия',),
-                          UserDataElement(pageSize: pageSize, textKey: 'userCity', text: 'Город',),
-                          UserDataElement(pageSize: pageSize, textKey: 'userAddress', text: 'Адрес',),
-                          UserDataElement(pageSize: pageSize, textKey: 'userPhoneNum', text: 'Номер телефона',),
-                          UserDataElement(pageSize: pageSize, textKey: 'userEmail', text: 'e-mail',)
+                          UserDataElement(pageSize: pageSize, textKey: 'userFirstName', text: 'Имя',userDataController: fNameDataElm,),
+                          UserDataElement(pageSize: pageSize, textKey: 'userSecondName', text: 'Фамилия',userDataController: sNameDataElm,),
+                          UserDataElement(pageSize: pageSize, textKey: 'userCity', text: 'Город',userDataController: cityDataElm,),
+                          UserDataElement(pageSize: pageSize, textKey: 'userAddress', text: 'Адрес',userDataController: addressDataElm,),
+                          UserDataElement(pageSize: pageSize, textKey: 'userPhoneNum', text: 'Номер телефона',userDataController: phoneNumDataElm,),
+                          UserDataElement(pageSize: pageSize, textKey: 'userEmail', text: 'e-mail',userDataController: emailDataElm,)
                         ]
                       ),
                     ),

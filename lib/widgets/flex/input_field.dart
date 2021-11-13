@@ -1,10 +1,12 @@
 import 'package:cifra/data/data.dart';
+import 'package:cifra/functions/functions.dart';
 import 'package:flutter/material.dart';
 
 class InputField extends StatelessWidget {
+  final String keyName;
   final String inpTitle;
-
-  const InputField({Key? key, this.inpTitle = ""}) : super(key: key);
+  final TextEditingController controller;
+  const InputField({Key? key, this.inpTitle = "", required this.keyName, required this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +15,8 @@ class InputField extends StatelessWidget {
       obscureText: key == const Key("password") ? true : false,
       style: const TextStyle(color: Colors.black, fontSize: 18),
       textAlign: TextAlign.center,
+      controller: controller,
+      //initialValue: SecureStorage.loadData(keyName).toString(),
       decoration: InputDecoration(
         alignLabelWithHint: true,
         filled: true,
@@ -26,10 +30,6 @@ class InputField extends StatelessWidget {
         border: const OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(15))),
       ),
-      onChanged: (value) => {
-        if (key == const Key("e-mail")) UserData.email = value,
-        if (key == const Key("password")) UserData.password = value,
-      },
     );
   }
 }

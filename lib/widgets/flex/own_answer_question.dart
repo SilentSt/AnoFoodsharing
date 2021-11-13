@@ -27,10 +27,10 @@ class _OwnAnswerQuestionState extends State<OwnAnswerQuestion> {
         const SizedBox(
           height: 20,
         ),
-        SizedBox(
-            width:
-                widget.pageSize.width > 825 ? 650 : widget.pageSize.width - 200,
-            child: const InputField())
+        // SizedBox(
+        //     width:
+        //         widget.pageSize.width > 825 ? 650 : widget.pageSize.width - 200,
+        //     child: InputField(keyName: "",))
       ],
     );
   }

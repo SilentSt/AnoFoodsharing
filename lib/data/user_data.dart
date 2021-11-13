@@ -1,5 +1,13 @@
-class UserData{
-  static String email="";
-  static String password="";
-  UserData();
+class UserData {
+  static var data = {
+    'fName': '',
+    'sName': '',
+    'city': '',
+    'address': '',
+    'phoneNum': '',
+    'email': '',
+    'password': '',
+  };
 }
+
+

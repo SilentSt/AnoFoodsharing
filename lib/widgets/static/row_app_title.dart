@@ -1,3 +1,4 @@
+import 'package:cifra/functions/go_push_page.dart';
 import 'package:cifra/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +23,7 @@ class _RowAppTitleState extends State<RowAppTitle> {
             .map(
               (e) => FlexLink(
                 text: e,
-                onTap: (context) => {},
+                onTap: goPushPage,
                 fontSize: 15,
                 fontColor: Colors.black,
               ),

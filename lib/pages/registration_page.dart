@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:cifra/connectors/send_data.dart';
 import 'package:cifra/data/data.dart';
 import 'package:cifra/functions/functions.dart';
@@ -7,6 +6,7 @@ import 'package:cifra/functions/login_button_pressed.dart';
 import 'package:cifra/headers/registation_headers.dart';
 import 'package:cifra/pages/pages.dart';
 import 'package:cifra/widgets/controllers/controllers.dart';
+import 'package:cifra/widgets/static/error_dialog.dart';
 import 'package:cifra/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -178,6 +178,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
     if (res != "NO_RESULT_SEND") {
       shDialog(context);
     }
+    else if (res == "NO_RESULT_SEND"){
+      errorLogin(context);
+    }
   }
   bool isChecked = true;
   Row checkUsingUserData() {
@@ -320,5 +323,13 @@ void shDialog(BuildContext context) {
       context: context,
       builder: (context) {
         return const SuccessRegistrationDialog();
+      });
+}
+void errorLogin(BuildContext context) {
+  PageState.logged = false;
+  showDialog(
+      context: context,
+      builder: (context) {
+        return const ErrorDialog();
       });
 }

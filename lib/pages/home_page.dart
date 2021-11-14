@@ -23,8 +23,10 @@ class _HomePageState extends State<HomePage> {
         title: pageSize.width > 850
             ? const RowAppTitle(
                 titles: ['Контакты', 'Описание', 'Статистика', 'Органицазиям'],
-              )
-            : const ColumnAppTitle(titles: ['Контакты', 'Описание', 'Статистика', 'Органицазиям'],),
+                func: [goHomePage, goHomePage, goHomePage, goHomePage])
+            : const ColumnAppTitle(
+                titles: ['Контакты', 'Описание', 'Статистика', 'Органицазиям'],
+                func: [goHomePage, goHomePage, goHomePage, goHomePage]),
         actions: [
           !PageState.logged
               ? pageSize.width > 500
@@ -38,7 +40,11 @@ class _HomePageState extends State<HomePage> {
                               return userSubMenu();
                             })
                       },
-                  icon: const PngGif(imgPath: "assets/imgs/profile", height: 54,width: 54,)),
+                  icon: const PngGif(
+                    imgPath: "assets/imgs/profile",
+                    height: 54,
+                    width: 54,
+                  )),
         ],
       ),
       body: SingleChildScrollView(
@@ -60,7 +66,6 @@ class _HomePageState extends State<HomePage> {
                 hoveredBorderColor: const Color(0xff08A88A),
                 onTap: loginButtonPressed,
                 borderColor: Colors.black,
-
               ),
               const SizedBox(height: 150),
               //graphic card here

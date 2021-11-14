@@ -1,4 +1,7 @@
 import 'package:cifra/functions/functions.dart';
+import 'package:cifra/functions/go_getters_page.dart';
+import 'package:cifra/functions/go_orgs_page.dart';
+import 'package:cifra/functions/go_statiscs_page.dart';
 import 'package:cifra/functions/go_test_page.dart';
 import 'package:cifra/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
@@ -22,11 +25,13 @@ class _RulesPageState extends State<RulesPage> {
           backgroundColor: Colors.white,
           leading: const Logo(),
           title: pageSize.width > 850
-              ? const RowAppTitle(
+              ? RowAppTitle(
                   titles: ['Расписание', 'Уведомления'],
+            func: [goAdminPage, goGettersPage, goOrgsPage, goStatisticsPage],
                 )
               : const ColumnAppTitle(
             titles: ['Расписание', 'Уведомления'],
+              func: [goAdminPage, goGettersPage, goOrgsPage, goStatisticsPage]
           ),
           actions: [
             IconButton(

@@ -39,6 +39,7 @@ dependencies:
   http: any
   reflectable: any
   flutter_session: ^0.1.1
+  syncfusion_flutter_charts: ^18.3.42
 
 dev_dependencies:
   flutter_test:

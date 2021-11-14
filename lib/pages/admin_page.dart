@@ -1,5 +1,8 @@
 import 'package:cifra/data/data.dart';
 import 'package:cifra/functions/functions.dart';
+import 'package:cifra/functions/go_getters_page.dart';
+import 'package:cifra/functions/go_orgs_page.dart';
+import 'package:cifra/functions/go_statiscs_page.dart';
 import 'package:cifra/functions/go_test_page.dart';
 import 'package:cifra/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
@@ -26,20 +29,20 @@ class _AdminPageState extends State<AdminPage> {
           backgroundColor: Colors.white,
           leading: const Logo(),
           title: pageSize.width > 850
-              ? const RowAppTitle(
+              ?  RowAppTitle(
                   titles: [
                     'Пользователи',
                     'Получатели',
                     'Организации',
                     'Статистика'
-                  ],func: goAdminPage,
+                  ],func: [goAdminPage, goGettersPage, goOrgsPage, goStatisticsPage],
                 )
-              : const ColumnAppTitle(titles: [
+              : ColumnAppTitle(titles: [
                   'Пользователи',
                   'Получатели',
                   'Организации',
                   'Статистика'
-                ],func: goAdminPage),
+                ],func: [goAdminPage, goGettersPage, goOrgsPage, goStatisticsPage]),
           actions: [
             IconButton(
                 onPressed: () => {
@@ -89,189 +92,314 @@ class _AdminPageState extends State<AdminPage> {
               ],
             ),
             padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 100),
-            child: DataTable(
-              dividerThickness: 3,
-              headingRowHeight: 50,
-              columnSpacing: 10,
-              dataRowHeight: 100,
+            child: Column(
+              children: [
+                Text("Волонтеры", style:const TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Colors.black)),
+                SizedBox(height: 20,),
+                DataTable(
+                  dividerThickness: 3,
+                  headingRowHeight: 50,
+                  columnSpacing: 10,
+                  dataRowHeight: 100,
 
-              rows: [
-                DataRow(cells: [
-                  DataCell(Row(
-                    children: [
-                      Image.asset(
-                        "assets/imgs/edit.png",
-                        width: 50,
-                        height: 50,
-                      ),
-                      Padding(padding: EdgeInsets.all(30),
-                      child:Column(
-                        children: const [
-                          Expanded(
-                            child: Text(
-                              "Первушин Максим Русланович",
-                              style: TextStyle(
-                                  color: Color(0xff08A88A),
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 15,
-                                  fontFamily: "GothamPro"),
-                            ),
+                  rows: [
+                    DataRow(cells: [
+                      DataCell(Row(
+                        children: [
+                          Image.asset(
+                            "assets/imgs/edit.png",
+                            width: 50,
+                            height: 50,
                           ),
-                          Expanded(child:
-                          Text(
-                            "+7 800 535 35 35",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 15,
-                                fontFamily: "GothamPro"),
-                          )),
-                          Expanded(
-                            child: Text(
-                              "frontend@ya.ru",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 15,
-                                  fontFamily: "GothamPro"),
-                            ),
-                          ),
-                        ],
-                      ))
-                    ],
-                  )),
-                  const DataCell(Padding(padding: EdgeInsets.all(30),
-                      child:Text(
-                    "г. Ростов-на-Дону, Большая Садовая, 69",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 15,
-                        fontFamily: "GothamPro"),
-                  )),),
-                  DataCell(Padding(padding: EdgeInsets.all(30),
-                    child: Column(
-                      children: const [
-                        Text(
-                          "Картошкина Н.Ю.",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 15,
-                              fontFamily: "GothamPro"),
-                        ),
-                        Text(
-                          "Иванов И.И.",
-                          style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 15,
-                          fontFamily: "GothamPro"),
-                        ),
-                      ],
-                    ),
-                  )),
-                  DataCell(
-                      Padding(padding: EdgeInsets.all(30),
+                          Padding(padding: EdgeInsets.all(30),
                           child:Column(
-                      children: const [
-                        Expanded(child: Text(
-                          "Леонова Наталья Владимировна",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 15,
-                              fontFamily: "GothamPro"),
-                        )),
-                        Expanded(
-                          child: Text(
-                            "+7 960 253 36 97",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 15,
-                                fontFamily: "GothamPro"),
-                          ),
-                        ),
-                        Expanded( child:Text(
-                          "leonova_055@mail.ru",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 15,
-                              fontFamily: "GothamPro"),
-                        ))
-                      ],
-                    ))
-                  )
-                ]),
-                DataRow(cells: [
-                  DataCell(Row(
-                    children: [
-                      Image.asset(
-                        "assets/imgs/edit.png",
-                        width: 50,
-                        height: 50,
-                      ),
-                      Padding(padding: EdgeInsets.all(30),
-                        child:Column(
-                        children: const [
-                          Expanded(
-                            child: Text(
-                              "Светличная Карина Степановна",
-                              style: TextStyle(
-                                  color: Color(0xff08A88A),
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 15,
-                                  fontFamily: "GothamPro"),
-                            ),
-                          ),
-                          Expanded(child:Text(
-                            "+7 800 353 35 35",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 15,
-                                fontFamily: "GothamPro"),
-                          )),
-                          Expanded(
-                            child: Text(
-                              "karikari@ya.ru",
+                            children: const [
+                              Expanded(
+                                child: Text(
+                                  "Первушин Максим Русланович",
+                                  style: TextStyle(
+                                      color: Color(0xff08A88A),
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 15,
+                                      fontFamily: "GothamPro"),
+                                ),
+                              ),
+                              Expanded(child:
+                              Text(
+                                "+7 800 535 35 35",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 15,
+                                    fontFamily: "GothamPro"),
+                              )),
+                              Expanded(
+                                child: Text(
+                                  "frontend@ya.ru",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 15,
+                                      fontFamily: "GothamPro"),
+                                ),
+                              ),
+                            ],
+                          ))
+                        ],
+                      )),
+                      const DataCell(Padding(padding: EdgeInsets.all(30),
+                          child:Text(
+                        "г. Ростов-на-Дону, Большая Садовая, 69",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 15,
+                            fontFamily: "GothamPro"),
+                      )),),
+                      DataCell(Padding(padding: EdgeInsets.all(30),
+                        child: Column(
+                          children: const [
+                            Text(
+                              "Картошкина Н.Ю.",
                               style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w400,
                                   fontSize: 15,
                                   fontFamily: "GothamPro"),
                             ),
+                            Text(
+                              "Иванов И.И.",
+                              style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 15,
+                              fontFamily: "GothamPro"),
+                            ),
+                          ],
+                        ),
+                      )),
+                      DataCell(
+                          Padding(padding: EdgeInsets.all(30),
+                              child:Column(
+                          children: const [
+                            Expanded(child: Text(
+                              "Леонова Наталья Владимировна",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 15,
+                                  fontFamily: "GothamPro"),
+                            )),
+                            Expanded(
+                              child: Text(
+                                "+7 960 253 36 97",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 15,
+                                    fontFamily: "GothamPro"),
+                              ),
+                            ),
+                            Expanded( child:Text(
+                              "leonova_055@mail.ru",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 15,
+                                  fontFamily: "GothamPro"),
+                            ))
+                          ],
+                        ))
+                      )
+                    ]),
+                    DataRow(cells: [
+                      DataCell(Row(
+                        children: [
+                          Image.asset(
+                            "assets/imgs/edit.png",
+                            width: 50,
+                            height: 50,
                           ),
+                          Padding(padding: EdgeInsets.all(30),
+                            child:Column(
+                            children: const [
+                              Expanded(
+                                child: Text(
+                                  "Светличная Карина Степановна",
+                                  style: TextStyle(
+                                      color: Color(0xff08A88A),
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 15,
+                                      fontFamily: "GothamPro"),
+                                ),
+                              ),
+                              Expanded(child:Text(
+                                "+7 800 353 35 35",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 15,
+                                    fontFamily: "GothamPro"),
+                              )),
+                              Expanded(
+                                child: Text(
+                                  "karikari@ya.ru",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 15,
+                                      fontFamily: "GothamPro"),
+                                ),
+                              ),
+                            ],
+                          ))
                         ],
-                      ))
-                    ],
-                  )),
-                  const DataCell(Padding(padding: EdgeInsets.all(30),
-                      child:Text(
-                    "г. Ростов-на-Дону, Красноармейская, 129",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 15,
-                        fontFamily: "GothamPro"),
-                  ))),
-                  DataCell(Column(
-                    children: const [
+                      )),
+                      const DataCell(Padding(padding: EdgeInsets.all(30),
+                          child:Text(
+                        "г. Ростов-на-Дону, Красноармейская, 129",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 15,
+                            fontFamily: "GothamPro"),
+                      ))),
+                      DataCell(Column(
+                        children: const [
 
-                    ],
-                  )),
-                  const DataCell(
-                      Icon(Icons.add, size: 20,)
-                  )
-                ]),
-              ],
-              columns: const [
-                DataColumn(label: Text("ФИО")),
-                DataColumn(label: Text("Адрес")),
-                DataColumn(label: Text("Получатели")),
-                DataColumn(label: Text("Куратор"))
+                        ],
+                      )),
+                      const DataCell(
+                          Icon(Icons.add, size: 20,)
+                      )
+                    ]),
+                  ],
+                  columns: const [
+                    DataColumn(label: Text("ФИО")),
+                    DataColumn(label: Text("Адрес")),
+                    DataColumn(label: Text("Получатели")),
+                    DataColumn(label: Text("Куратор"))
+                  ],
+                ),
+                SizedBox(height: 50,),
+                Text("Кураторы", style:const TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Colors.black)),
+                SizedBox(height: 20,),
+                DataTable(
+                  dividerThickness: 3,
+                  headingRowHeight: 50,
+                  columnSpacing: 10,
+                  dataRowHeight: 100,
+
+                  rows: [
+                    DataRow(cells: [
+                      DataCell(Row(
+                        children: [
+                          Image.asset(
+                            "assets/imgs/edit.png",
+                            width: 50,
+                            height: 50,
+                          ),
+                          Padding(padding: EdgeInsets.all(30),
+                              child:Column(
+                                children: const [
+                                  Expanded(
+                                    child: Text(
+                                      "Леонова Наталья Леонидовна",
+                                      style: TextStyle(
+                                          color: Color(0xff08A88A),
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 15,
+                                          fontFamily: "GothamPro"),
+                                    ),
+                                  ),
+                                  Expanded(child:
+                                  Text(
+                                    "+7 800 535 35 35",
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 15,
+                                        fontFamily: "GothamPro"),
+                                  )),
+                                  Expanded(
+                                    child: Text(
+                                      "leonova@mail.ru",
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 15,
+                                          fontFamily: "GothamPro"),
+                                    ),
+                                  ),
+                                ],
+                              ))
+                        ],
+                      )),
+                      const DataCell(Padding(padding: EdgeInsets.all(30),
+                          child:Text(
+                            "г. Ростов-на-Дону, 7 организаций",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 15,
+                                fontFamily: "GothamPro"),
+                          )),),
+                      DataCell(Padding(padding: EdgeInsets.all(30),
+                        child: Column(
+                          children: const [
+                            Text(
+                              "Картошкина Н.Ю.",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 15,
+                                  fontFamily: "GothamPro"),
+                            ),
+                            Text(
+                              "Иванов И.И.",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 15,
+                                  fontFamily: "GothamPro"),
+                            ),
+                          ],
+                        ),
+                      )),
+                      DataCell(
+                          Padding(padding: EdgeInsets.all(30),
+                              child:Column(
+                                children: const [
+                                  Expanded(child: Text(
+                                    "Первушин Максим",
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 15,
+                                        fontFamily: "GothamPro"),
+                                  )),
+                                  Expanded(
+                                    child: Text(
+                                      "Светличная Карина",
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 15,
+                                          fontFamily: "GothamPro"),
+                                    ),
+                                  ),
+                                ],
+                              ))
+                      )
+                    ]),
+                  ],
+                  columns: const [
+                    DataColumn(label: Text("ФИО")),
+                    DataColumn(label: Text("Организации")),
+                    DataColumn(label: Text("Получатели")),
+                    DataColumn(label: Text("Волонтёры"))
+                  ],
+                ),
               ],
             )),
       ),

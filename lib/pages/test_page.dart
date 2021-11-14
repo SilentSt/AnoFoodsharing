@@ -1,5 +1,6 @@
 import 'package:cifra/functions/functions.dart';
 import 'package:cifra/functions/go_account_page.dart';
+import 'package:cifra/functions/go_push_page.dart';
 import 'package:cifra/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -24,6 +25,7 @@ class _TestPageState extends State<TestPage> {
           leading: const Logo(),
           title: const RowAppTitle(
             titles: ['Расписание', 'Уведомления'],
+            func: [goHomePage, goPushPage],
           ),
           actions: [
             IconButton(

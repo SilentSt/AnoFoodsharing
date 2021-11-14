@@ -1,15 +1,16 @@
 import 'package:cifra/functions/functions.dart';
 import 'package:cifra/functions/go_push_page.dart';
+import 'package:cifra/functions/go_statiscs_page.dart';
 import 'package:cifra/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class RowAppTitle extends StatefulWidget {
   final List<String> titles;
-  final Function func;
+  final List<Function> func;
   const RowAppTitle({
     Key? key,
 
-    required this.titles, this.func = goHomePage,
+    required this.titles, required this.func,
   }) : super(key: key);
 
   @override
@@ -25,7 +26,7 @@ class _RowAppTitleState extends State<RowAppTitle> {
             .map(
               (e) => FlexLink(
                 text: e,
-                onTap: e=="Статистика"?goAdminPage:widget.func,
+                onTap: widget.func[names.indexOf(e)],
                 fontSize: 15,
                 fontColor: Colors.black,
               ),

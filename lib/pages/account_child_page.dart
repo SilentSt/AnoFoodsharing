@@ -11,18 +11,18 @@ import 'package:cifra/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_session/flutter_session.dart';
 
-class AccountPage extends StatefulWidget {
-  const AccountPage({Key? key}) : super(key: key);
+class AccountChildPage extends StatefulWidget {
+  const AccountChildPage({Key? key}) : super(key: key);
 
   @override
-  State<AccountPage> createState() => _AccountPageState();
+  State<AccountChildPage> createState() => _AccountChildPageState();
 }
 
-class _AccountPageState extends State<AccountPage> {
+class _AccountChildPageState extends State<AccountChildPage> {
   int role = 0;
+
   @override
   Widget build(BuildContext context) {
-
     prepareData();
     var pageSize = MediaQuery.of(context).size;
     //print(getData(accountDataHeaders, '/me'));
@@ -33,7 +33,8 @@ class _AccountPageState extends State<AccountPage> {
           backgroundColor: Colors.white,
           leading: const Logo(),
           title: const RowAppTitle(
-            titles: ['Уведомления'],func: [goPushPage],
+            titles: ['Уведомления'],
+            func: [goPushPage],
           ),
           actions: [
             IconButton(
@@ -69,7 +70,11 @@ class _AccountPageState extends State<AccountPage> {
                                               Radius.circular(15))),
                                       actionsAlignment:
                                           MainAxisAlignment.center,
-                                      actions: [ParametersPanel(type: PageState.role,)],
+                                      actions: [
+                                        ParametersPanel(
+                                          type: PageState.role,
+                                        )
+                                      ],
                                     );
                                   })
                             },
@@ -78,7 +83,7 @@ class _AccountPageState extends State<AccountPage> {
                   width: 20,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 50),
+                  padding: const EdgeInsets.all(40),
                   child: Container(
                     width: pageSize.width > 820 ? 550 : pageSize.width - 100,
                     decoration: const BoxDecoration(
@@ -96,46 +101,60 @@ class _AccountPageState extends State<AccountPage> {
                           )
                         ]),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 15),
+                      padding: const EdgeInsets.all(40),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            UserDataElement(
-                              pageSize: pageSize,
-                              textKey: 'userFirstName',
-                              text: 'Имя',
-                              userDataController: fNameDataElm,
+                            Row(
+                              children: const [
+                                Text(
+                                  "Картошкина Нина Юрьевна",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 20,
+                                      fontFamily: 'GothamPro'),
+                                ),
+                                SizedBox(height: 10,),
+                                Text("подопечный с 14.11.2021",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 10,
+                                      fontFamily: 'GothamPro'),),
+                              ],
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             ),
-                            UserDataElement(
-                              pageSize: pageSize,
-                              textKey: 'userSecondName',
-                              text: 'Фамилия',
-                              userDataController: sNameDataElm,
+                            const SizedBox(height: 5,),
+                            Row(
+                              children: const [ Text("Красноармейская улица, 210/117, кв. 67",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w300,
+                                    fontSize: 10,
+                                    fontFamily: 'GothamPro'),)],
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             ),
-                            UserDataElement(
-                              pageSize: pageSize,
-                              textKey: 'userCity',
-                              text: 'Город',
-                              userDataController: cityDataElm,
+                            const SizedBox(height: 5,),
+                            Row(
+                              children: const [Text("+7 978 565 65 74",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 20,
+                                    fontFamily: 'GothamPro'),)],
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             ),
-                            UserDataElement(
-                              pageSize: pageSize,
-                              textKey: 'userAddress',
-                              text: 'Адрес',
-                              userDataController: addressDataElm,
+                            const SizedBox(height: 5,),
+                            Row(
+                              children: const [Text("patato@mail.ru",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w300,
+                                    fontSize: 15,
+                                    fontFamily: 'GothamPro'),)],
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             ),
-                            UserDataElement(
-                              pageSize: pageSize,
-                              textKey: 'userPhoneNum',
-                              text: 'Номер телефона',
-                              userDataController: phoneNumDataElm,
-                            ),
-                            UserDataElement(
-                              pageSize: pageSize,
-                              textKey: 'userEmail',
-                              text: 'e-mail',
-                              userDataController: emailDataElm,
-                            )
                           ]),
                     ),
                   ),
@@ -150,7 +169,8 @@ class _AccountPageState extends State<AccountPage> {
 
   prepareData() async {
     var header = accountDataHeaders;
-    header[HttpHeaders.authorizationHeader]='Bearer ${await FlutterSession().get("jwt")}';
+    header[HttpHeaders.authorizationHeader] =
+        'Bearer ${await FlutterSession().get("jwt")}';
     var data = await getData(header, 'me');
     var _data = jsonDecode(utf8.decode(data));
     fNameDataElm.text = _data['first_name'];
@@ -163,5 +183,4 @@ class _AccountPageState extends State<AccountPage> {
     //print((int.parse(await FlutterSession().get("role"))).toString());
     PageState.id = _data['id'];
   }
-
 }

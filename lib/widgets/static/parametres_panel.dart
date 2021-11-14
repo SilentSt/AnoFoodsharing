@@ -34,7 +34,7 @@ class ParametersPanel extends StatelessWidget {
       "Подопечные":goAccountPage,
       "Настройки аккаунта":goAccountPage,
     };
-    var typizator=[volonter0,volonter1, volonter2, kurator];
+    var typizator=[volonter0,volonter1, volonter2, kurator, volonter0];
     return Column(
       children:typizator[type].keys.map((e) => Link(
         text: e,

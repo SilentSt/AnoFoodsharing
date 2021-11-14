@@ -39,11 +39,14 @@ class PushWait extends StatelessWidget {
                   Text(
                     'Нужно немножко подождать :)',
                     style: TextStyle(fontWeight: FontWeight.w700),
+                    textAlign: TextAlign.center,
                   ),
                   PngGif(imgPath: 'assets/imgs/clock', height: 150, width: 150),
                   Text(
-                      'Ваша заявка на волонтерство находится на рассмотрении!'),
-                  Text('Вам будет назначен куратор.')
+                      'Ваша заявка на волонтерство находится на рассмотрении!',
+                    textAlign: TextAlign.center,),
+                  Text('Вам будет назначен куратор.',
+                    textAlign: TextAlign.center,)
                 ],
               ),
             ),

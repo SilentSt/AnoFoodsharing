@@ -36,6 +36,7 @@ void loginButtonPressed(BuildContext context) {
                     height: 20,
                   ),
                   InputField(
+                    key: Key("password"),
                     keyName: const Key("password").toString(),
                     controller: passwordController,
                     inpTitle: "Пароль",

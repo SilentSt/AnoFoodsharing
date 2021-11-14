@@ -24,7 +24,9 @@ class _PushPageState extends State<PushPage> {
             ? const RowAppTitle(
           titles: ['Уведомления'],
         )
-            : const ColumnAppTitle(),
+            : const ColumnAppTitle(
+          titles: ['Уведомления'],
+        ),
         actions: [
           !PageState.logged
               ? pageSize.width > 500

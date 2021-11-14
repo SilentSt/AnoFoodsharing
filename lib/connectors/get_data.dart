@@ -11,8 +11,8 @@ import 'package:http/http.dart' as http;
 Future getData(Map<String,String> headers, String command, ) async {
   final uri = Uri.parse('https://foodsharing.shitposting.team/api/v1/'+command);
   final response = await http.get(uri, headers: headers);
-  print(response.statusCode);
-  print(response.body);
+  //print(response.statusCode);
+  //print(response.body);
   if(response.statusCode==200||response.statusCode==201)
     {
       return response.bodyBytes;

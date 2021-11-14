@@ -32,14 +32,14 @@ class _AdminPageState extends State<AdminPage> {
                     'Получатели',
                     'Организации',
                     'Статистика'
-                  ],
+                  ],func: goAdminPage,
                 )
               : const ColumnAppTitle(titles: [
                   'Пользователи',
                   'Получатели',
                   'Организации',
                   'Статистика'
-                ]),
+                ],func: goAdminPage),
           actions: [
             IconButton(
                 onPressed: () => {

@@ -12,7 +12,7 @@ class InputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       key: key,
-      obscureText: key == const Key("password") ? true : false,
+      obscureText: key == const Key("password")||inpTitle=="Придумайте пароль" ? true : false,
       style: const TextStyle(color: Colors.black, fontSize: 18),
       textAlign: TextAlign.center,
       controller: controller,

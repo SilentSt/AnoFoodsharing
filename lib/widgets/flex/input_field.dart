@@ -16,6 +16,19 @@ class InputField extends StatelessWidget {
       style: const TextStyle(color: Colors.black, fontSize: 18),
       textAlign: TextAlign.center,
       controller: controller,
+      validator: (emailReg) {
+        // Check if this field is empty
+        if (emailReg!.isEmpty) {
+        }
+
+        // using regular expression
+        if (!RegExp( r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(emailReg)) {
+          return "Please enter a valid email address";
+        }
+
+        // the email is valid
+        return null;
+      },
       decoration: InputDecoration(
         alignLabelWithHint: true,
         filled: true,

@@ -19,7 +19,7 @@ class _MyAppState extends State<MyApp> {
 
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: '11337',
+      title: 'cifra',
       home: HomePage(),
     );
   }
